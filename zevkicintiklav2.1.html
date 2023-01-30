@@ -1,0 +1,194 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+        <title>Zevki İçin Tıkla</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Zevk İçin Tıkla" name="description">
+        <meta content="" name="author">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style>
+.rand {
+  font-family: Helvetica, sans-serif;
+  word-wrap: break;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background: #137210;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  z-index: -1;
+}
+.rand1 {
+  font-family: Helvetica, sans-serif;
+  word-wrap: break;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background: #669900;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  z-index: -1;
+}
+
+.rand2 {
+  font-family: Helvetica, sans-serif;
+  word-wrap: break;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background: #FF9900;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  z-index: -1;
+}
+
+.log {
+ 
+  border: 1px solid #000;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 20px;
+  font-family: Helvetica;
+  font-size: 12px;
+  font-color: #FFFFFF;
+  background: #666666;
+  position: absolute;
+  margin: bottom;
+
+}
+
+
+.new_pos {
+  background: #ccc;
+  border: 1px solid #000;
+  padding: 5px;
+  box-shadow: 0 0 20px #555;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.new_pos:hover {
+  background: #FFFFFF;
+  box-shadow: 0 0 20px #222;
+}
+
+
+.new_pos:active {
+  box-shadow: 0 0 20px #000;
+  background: #aaa;
+}
+
+
+*:focus {
+  outline: none;
+}
+
+
+body {
+  overflow: hidden;
+  height: 500px;
+ 
+}
+
+.new_pos {
+ position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+}
+  </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="rand_pos" class="rand"></div>
+<div id="rand_pos1" class="rand1"></div>
+<div id="rand_pos2" class="rand2"></div>
+<div id="pos_log" class="log"><center> x: 0 - y: 0 -  Total : <a id="clicks">0</a> </center></div>
+<button class="new_pos" id="new_pos" onClick="onClick()"> Zevk İçin Tıkla ! </button>
+<button id="ortala">Ortala</button>
+
+
+
+
+<script>
+$("#ortala").click(function() {
+  $("#rand_pos").css({
+    "position": "absolute",
+    "left": "50%",
+    "top": "50%"
+  });
+  $("#rand_pos1").css({
+    "position": "absolute",
+    "left": "50%",
+    "top": "50%"
+  });
+  $("#rand_pos2").css({
+    "position": "absolute",
+    "left": "50%",
+    "top": "50%"
+  });
+});
+
+document.getElementById("ortala").addEventListener("click", function() {
+  alert("Hileci Seni!! Sabredemedin değil mi? :)");
+});
+
+</script>
+
+<script>
+var clicks = 0;
+function onClick() {
+  clicks += 1;
+  document.getElementById("new_pos").innerHTML = "Zevk İçin Tıkla ! (" + clicks +" )";
+}; 
+$(document).ready(function() {
+  $("#ortala").click(function() {
+    var bodyWidth = document.body.clientWidth;
+    var bodyHeight = document.body.clientHeight;
+    var randPosX = Math.floor((Math.random() * bodyWidth));
+    var randPosY = Math.floor((Math.random() * bodyHeight));
+    var randPosX1 = Math.floor((Math.random() * bodyWidth));
+    var randPosY1 = Math.floor((Math.random() * bodyHeight));
+    var randPosX2 = Math.floor((Math.random() * bodyWidth));
+    var randPosY2 = Math.floor((Math.random() * bodyHeight));
+    var avgPosX = (randPosX + randPosX1 + randPosX2) / 3;
+    var avgPosY = (randPosY + randPosY1 + randPosY2) / 3;
+    $("#rand_pos").css({ top: avgPosY, left: avgPosX });
+    $("#rand_pos1").css({ top: avgPosY, left: avgPosX });
+    $("#rand_pos2").css({ top: avgPosY, left: avgPosX });
+  });
+});
+$('.new_pos').click(function() {
+  var bodyWidth = document.body.clientWidth
+  var bodyHeight = document.body.clientHeight;
+  var randPosX = Math.floor((Math.random()*bodyWidth));
+  var randPosY = Math.floor((Math.random()*bodyHeight));
+  var randPosX1 = Math.floor((Math.random()*bodyWidth));
+  var randPosY1 = Math.floor((Math.random()*bodyHeight));
+  var randPosX2 = Math.floor((Math.random()*bodyWidth));
+  var randPosY2 = Math.floor((Math.random()*bodyHeight));
+  var posLog = document.getElementById('pos_log');
+  var posXY = '<center>x: ' + randPosX + ' - ' + 'y: ' + randPosY + ' Total :' + clicks + '</center> ';
+  
+  $('#rand_pos').css('left', randPosX);
+  $('#rand_pos').css('top', randPosY);
+  $('#rand_pos1').css('left', randPosX1);
+  $('#rand_pos1').css('top', randPosY1);
+  $('#rand_pos2').css('left', randPosX2);
+  $('#rand_pos2').css('top', randPosY2);
+  
+  posLog.innerHTML = posXY
+});
+
+</script>
+</body>
+</html>
